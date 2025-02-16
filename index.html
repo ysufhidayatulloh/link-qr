@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            background-color: #0a192f;
+            color: #ccd6f6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            padding: 20px;
+            background-color: #112240;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background-color: #112240;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        }
+        /* Ketika card terlihat, tambahkan efek animasi */
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card.show img {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">Panduan Pemindaian QR Code</h1>
+    </header>
+    <section class="container">
+        <div class="card">
+            <h2>Buka Kamera Ponsel</h2>
+            <p>Jika Anda menggunakan kamera ponsel, pastikan kamera sudah ada fitur QR Code. Setelah itu, arahkan kamera ke QR Code dan tunggu notifikasi atau tautan muncul.</p>
+            <img src="foto/camera-guide.jpg" alt="Tutorial Kamera">
+        </div>
+        <div class="card">
+            <h2>Gunakan Google Lens (Opsional)</h2>
+            <p>Jika tersedia google chrome silahkan buka chrome Anda, ketuk ikon Google Lens dan arahkan ke QR Code.</p>
+            <img src="foto/google-lens.jpg" alt="Tutorial Google Lens">
+        </div>
+        <div class="card">
+            <h2>Buka Akses AR</h2>
+            <p>Setelah muncul gambar seperti di bawah ini, silahkan Anda ketuk "Place It In Your Room".</p>
+            <img src="foto/browser-scan.jpg" alt="Tutorial Browser Scan">
+        </div>
+        <div class="card">
+            <h2>Akses Assembler</h2>
+            <p>Ketuk "Play" untuk menjalankan visual 3D AR.</p>
+            <img src="foto/assembler-page.jpg" alt="Halaman Assembler">
+        </div>
+        <div class="card">
+            <h2>Tampilan Assembler</h2>
+            <p>Arahkan kamera ke dataran seperti meja dan lantai.</p>
+            <img src="foto/end.jpg" alt="Halaman Assembler">
+        </div>
+    </section>
+
+    <script>
+        // JavaScript untuk Intersection Observer API
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.4 }); // Muncul ketika 30% elemen terlihat
+
+            document.querySelectorAll(".card").forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
